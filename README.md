@@ -4,12 +4,12 @@ Cedar Payment Flow Take-Home Accessment
 
 Bootstrapped with [Create Next App with Typescript/NextJS/React](https://github.com/jpedroschmitz/typescript-nextjs-starter).
 
-### Development
+### Preview
 
-To start the project locally, run:
+To view app, run:
 
 ```bash
-pnpm dev
+pnpm build && pnpm start
 ```
 
 Open `http://localhost:3000` with your browser to see the result.
@@ -23,7 +23,6 @@ Open `http://localhost:3000` with your browser to see the result.
 
 ### Directory Structure
 
-- [`.github`](.github) — GitHub configuration including the CI workflow.<br>
 - [`public`](./public) — Static assets such as robots.txt, images, and favicon.<br>
 - [`src`](./src) — Application source code, including pages, components, styles.
 

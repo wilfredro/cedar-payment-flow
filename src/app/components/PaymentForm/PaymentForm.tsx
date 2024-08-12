@@ -25,7 +25,10 @@ export const paymentInformationSchema = Yup.object().shape({
   expiration: Yup.string()
     .matches(/^(0[1-9]|1[0-2])\/?([0-9]{2})+$/, 'Invalid format/range')
     .required('This field is required'),
-  securityCode: Yup.string().matches(/^\d+$/, 'Numbers only').required('This field is required'),
+  securityCode: Yup.string()
+    .min(3, '3-4 digits required')
+    .matches(/^\d+$/, 'Numbers only')
+    .required('This field is required'),
   name: Yup.string().required('This field is required'),
   zipCode: Yup.string().min(5, '5 digits required').matches(/^\d+$/, 'Numbers only').required('This field is required'),
 });
@@ -43,7 +46,7 @@ export function PaymentForm() {
   const router = useRouter();
 
   return (
-    <div className="max-w-lg mx-auto overflow-hidden md:max-2xl:rounded-2xl bg-white p-8 md:max-2xl:mt-8">
+    <div className="max-w-lg mx-auto overflow-hidden sm:rounded-2xl bg-white p-8 sm:mt-8">
       <div className="flex flex-row gap-2 mb-4 items-center">
         <div className="bg-[#3667E9] rounded-full w-6 h-6 text-white text-center">1</div>
         <h1 className="font-bold text-lg">Payment information</h1>
@@ -59,58 +62,68 @@ export function PaymentForm() {
           router.push('/review');
         }}
       >
-        <Form data-testid="payment-form">
-          <div className="flex flex-col gap-y-4">
-            <InputField
-              type="text"
-              maxLength={16}
-              id="cardNumber"
-              name="cardNumber"
-              label="Card number"
-              aria-label="Card number"
-              aria-required="true"
-            />
-            <div className="flex-row flex gap-x-4">
+        {({ errors, touched }) => (
+          <Form data-testid="payment-form">
+            <div className="flex flex-col gap-y-4">
               <InputField
                 type="text"
+                inputMode="numeric"
+                maxLength={16}
+                id="cardNumber"
+                name="cardNumber"
+                label="Card number"
+                aria-label="Card number"
+                aria-required="true"
+                aria-invalid={Boolean(errors.cardNumber && touched.cardNumber)}
+              />
+              <div className="flex-row flex gap-x-4">
+                <InputField
+                  type="text"
+                  maxLength={5}
+                  id="expiration"
+                  name="expiration"
+                  label="Expires (MM/YY)"
+                  aria-label="Expires (MM/YY)"
+                  aria-required="true"
+                  aria-invalid={Boolean(errors.expiration && touched.expiration)}
+                />
+                <InputField
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={4}
+                  id="securityCode"
+                  name="securityCode"
+                  label="Security code (CVV)"
+                  aria-label="Security code (CVV)"
+                  aria-required="true"
+                  aria-invalid={Boolean(errors.securityCode && touched.securityCode)}
+                />
+              </div>
+              <InputField
+                type="text"
+                maxLength={255}
+                id="name"
+                name="name"
+                label="Name on card"
+                aria-label="Name on card"
+                aria-required="true"
+                aria-invalid={Boolean(errors.name && touched.name)}
+              />
+              <InputField
+                type="text"
+                inputMode="numeric"
                 maxLength={5}
-                id="expiration"
-                name="expiration"
-                label="Expires (MM/YY)"
-                aria-label="Expires (MM/YY)"
+                id="zipCode"
+                name="zipCode"
+                label="Zip code"
+                aria-label="Zip code"
                 aria-required="true"
+                aria-invalid={Boolean(errors.zipCode && touched.zipCode)}
               />
-              <InputField
-                type="text"
-                maxLength={4}
-                id="securityCode"
-                name="securityCode"
-                label="Security code (CVV)"
-                aria-label="Security code (CVV)"
-                aria-required="true"
-              />
+              <Button type="submit">Continue</Button>
             </div>
-            <InputField
-              type="text"
-              maxLength={255}
-              id="name"
-              name="name"
-              label="Name on card"
-              aria-label="Name on card"
-              aria-required="true"
-            />
-            <InputField
-              type="text"
-              maxLength={5}
-              id="zipCode"
-              name="zipCode"
-              label="Zip code"
-              aria-label="Zip code"
-              aria-required="true"
-            />
-            <Button type="submit">Continue</Button>
-          </div>
-        </Form>
+          </Form>
+        )}
       </Formik>
     </div>
   );

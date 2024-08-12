@@ -21,10 +21,7 @@ function ReviewAndPay(props: ReviewAndPayProps) {
   const formattedCreditCardNumber = cardNumber?.slice(cardNumber.length - 4);
 
   return (
-    <div
-      data-testid="review-and-pay"
-      className="max-w-md mx-auto overflow-hidden md:max-2xl:rounded-2xl bg-white p-8 md:max-2xl:mt-8"
-    >
+    <div data-testid="review-and-pay" className="max-w-md mx-auto overflow-hidden sm:rounded-2xl bg-white p-8 sm:mt-8">
       <div className="flex flex-row gap-2 mb-4 items-center">
         <div className="bg-[#3667E9] rounded-full w-6 h-6 text-white text-center">2</div>
         <h1 className="font-bold text-lg">Review and pay</h1>
