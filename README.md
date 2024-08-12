@@ -1,6 +1,8 @@
 ### Cedar Payment Flow UI
 
-Created initial dev environment [Create Next App with Typescript/NextJS/React](https://github.com/jpedroschmitz/typescript-nextjs-starter).
+Cedar Payment Flow Take-Home Accessment
+
+Bootstrapped with [Create Next App with Typescript/NextJS/React](https://github.com/jpedroschmitz/typescript-nextjs-starter).
 
 ### Development
 
