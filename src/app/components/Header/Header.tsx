@@ -11,9 +11,16 @@ const StyledHeader = styled('header')`
 
 export function Header() {
   return (
-    <StyledHeader>
+    <StyledHeader data-testid="header">
       <a href="/">
-        <Image src="/abc_health_system.svg" alt="ABC Health System Logo" width={153} height={38} priority />
+        <Image
+          data-testid="header-logo"
+          src="/abc_health_system.svg"
+          alt="ABC Health System Logo"
+          width={153}
+          height={38}
+          priority
+        />
       </a>
     </StyledHeader>
   );

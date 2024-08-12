@@ -17,7 +17,7 @@ type CreditCard = {
   zipCode: string;
 };
 
-const mockData: Patient = {
+export const mockData: Patient = {
   name: 'Taylor',
   provider_name: 'ABC Health System',
   bill_amount: 600.0,

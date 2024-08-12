@@ -9,7 +9,7 @@ import { usePaymentFlowContext } from '@/app/providers/Context';
 import { Button } from '../Button/Button';
 import { InputField } from './Field';
 
-interface MyFormValues {
+interface FormValues {
   cardNumber: string;
   expiration: string;
   securityCode: string;
@@ -23,7 +23,7 @@ export const paymentInformationSchema = Yup.object().shape({
     .matches(/^\d+$/, 'Numbers only')
     .required('This field is required'),
   expiration: Yup.string()
-    .matches(/^(0[1-9]|1[0-2])\/?([0-9]{2})+$/, 'Invalid format (MM/YY)')
+    .matches(/^(0[1-9]|1[0-2])\/?([0-9]{2})+$/, 'Invalid format/range')
     .required('This field is required'),
   securityCode: Yup.string().matches(/^\d+$/, 'Numbers only').required('This field is required'),
   name: Yup.string().required('This field is required'),
@@ -31,7 +31,7 @@ export const paymentInformationSchema = Yup.object().shape({
 });
 
 export function PaymentForm() {
-  const initialValues: MyFormValues = {
+  const initialValues: FormValues = {
     cardNumber: '',
     expiration: '',
     securityCode: '',
@@ -46,7 +46,7 @@ export function PaymentForm() {
     <div className="max-w-lg mx-auto overflow-hidden md:max-2xl:rounded-2xl bg-white p-8 md:max-2xl:mt-8">
       <div className="flex flex-row gap-2 mb-4 items-center">
         <div className="bg-[#3667E9] rounded-full w-6 h-6 text-white text-center">1</div>
-        <h1 className="font-bold text-lg">Payment Information</h1>
+        <h1 className="font-bold text-lg">Payment information</h1>
       </div>
       <Formik
         initialValues={initialValues}
@@ -59,7 +59,7 @@ export function PaymentForm() {
           router.push('/review');
         }}
       >
-        <Form>
+        <Form data-testid="payment-form">
           <div className="flex flex-col gap-y-4">
             <InputField
               type="text"

@@ -57,8 +57,8 @@ export const InputField: React.FC<InputFieldProps & FieldConfig<string> & JSX.In
   const { name } = props;
   const [field, meta] = useField(props);
 
-  const showErrorIcon = meta.error && meta.touched && <ErrorIcon />;
-  const showCheckIcon = !meta.error && meta.touched && <CheckIcon />;
+  const showErrorIcon = meta.error && meta.touched;
+  const showCheckIcon = !meta.error && meta.touched;
 
   return (
     <div className="flex flex-col grow">
@@ -66,8 +66,16 @@ export const InputField: React.FC<InputFieldProps & FieldConfig<string> & JSX.In
         {label}
         <StyledInputWrapper>
           <StyledInput $hasError={Boolean(meta.error && meta.touched)} {...field} {...props} />
-          <StyledSpan>{showErrorIcon}</StyledSpan>
-          <StyledSpan>{showCheckIcon}</StyledSpan>
+          {showErrorIcon && (
+            <StyledSpan data-testid="error-icon">
+              <ErrorIcon />
+            </StyledSpan>
+          )}
+          {showCheckIcon && (
+            <StyledSpan data-testid="check-icon">
+              <CheckIcon />
+            </StyledSpan>
+          )}
         </StyledInputWrapper>
       </StyledLabel>
       <StyledErrorMessage>

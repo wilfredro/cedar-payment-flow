@@ -21,7 +21,10 @@ function ReviewAndPay(props: ReviewAndPayProps) {
   const formattedCreditCardNumber = cardNumber?.slice(cardNumber.length - 4);
 
   return (
-    <div className="max-w-md mx-auto overflow-hidden md:max-2xl:rounded-2xl bg-white p-8 md:max-2xl:mt-8">
+    <div
+      data-testid="review-and-pay"
+      className="max-w-md mx-auto overflow-hidden md:max-2xl:rounded-2xl bg-white p-8 md:max-2xl:mt-8"
+    >
       <div className="flex flex-row gap-2 mb-4 items-center">
         <div className="bg-[#3667E9] rounded-full w-6 h-6 text-white text-center">2</div>
         <h1 className="font-bold text-lg">Review and pay</h1>
@@ -44,7 +47,7 @@ function ReviewAndPay(props: ReviewAndPayProps) {
         </>
       )}
       <div className="mt-8">
-        <Button onClick={() => setIsPaid(true)} disabled={!cardNumber}>{`Pay ${formattedBillAmount}`}</Button>
+        <Button onClick={() => setIsPaid(true)}>{`Pay ${formattedBillAmount}`}</Button>
       </div>
     </div>
   );
@@ -52,7 +55,7 @@ function ReviewAndPay(props: ReviewAndPayProps) {
 
 function ThankYouMessage() {
   return (
-    <div className="max-w-md mx-auto overflow-hidden my-16 md:max-2xl:mt-8">
+    <div data-testid="thank-you-message" className="max-w-md mx-auto overflow-hidden my-16 md:max-2xl:mt-8">
       <h1 className="font-bold text-xl text-[#13126c] text-center">Thank you for your payment!</h1>
     </div>
   );
