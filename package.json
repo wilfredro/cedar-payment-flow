@@ -1,14 +1,9 @@
 {
   "name": "cedar-payment-flow",
-  "description": "A TypeScript starter for Next.js that includes all you need to build amazing projects",
+  "description": "Cedar Payment Flow",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
-  "keywords": [
-    "nextjs",
-    "starter",
-    "typescript"
-  ],
   "scripts": {
     "dev": "next",
     "build": "next build",
